@@ -1,59 +1,144 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Product Inventory API (Laravel 12)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A RESTful Product Inventory API built using Laravel 12. This API allows users to create, update, and retrieve product details using JSON file storage instead of a database.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tech Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Framework:** Laravel 12.12.2
+- **Language:** PHP 8+
+- **Storage:** JSON File Storage
+- **Response Format:** Laravel API Resources/Collections (JSON)
+- **Architecture:** Service-Based Architecture
+- **API Type:** RESTful
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ⚙️ Setup Instructions
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 1️⃣ Clone & Install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone https://github.com/<your-username>/product-api-assignment.git
 
-## Laravel Sponsors
+cd product-api-assignment
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+composer install
 
-### Premium Partners
+cp .env.example .env
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+php artisan key:generate
 
-## Contributing
+php artisan serve
+Run the Application
+php artisan serve
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Open in browser:
 
-## Code of Conduct
+http://127.0.0.1:8000
+API Base URL
+http://127.0.0.1:8000/api 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+API Endpoints
+Feature	                Method	  Endpoint	            Description
+Create Product	        POST	  /api/products	        Create a new product
+Get All Products	    GET	      /api/products	        Retrieve all products
+Get Single Product	    GET	      /api/products/{id}	Retrieve single product
+Update Product	        PUT	      /api/products/{id}	Update product details
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Request Payload Examples
+Create Product
+POST /api/products (Example: http://127.0.0.1:8000/api/products)
 
-## License
+{
+    "name": "Laptop",
+    "description": "Gaming Laptop",
+    "price": 50000,
+    "quantity": 10
+}
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+Update Product
+PUT /api/products/1 (Example: http://127.0.0.1:8000/api/products/1)
+
+{
+    "price": 55000
+}
+
+Sample API Response
+
+{
+    "success": true,
+    "message": "Product created successfully.",
+    "data": {
+        "id": 1,
+        "name": "Laptop",
+        "description": "Gaming Laptop",
+        "price": 50000,
+        "quantity": 10
+    }
+}
+
+Retrieve all products
+GET /api/products (Example: http://127.0.0.1:8000/api/products)
+
+
+Retrieve single product
+GET /api/products/1 (Example: http://127.0.0.1:8000/api/products/1)
+
+
+
+
+Validation Rules
+
+Field	               Rules
+name	               required, string, max:255
+description	           nullable, string
+price	               required, numeric, min:0.01
+quantity	           required, integer, min:0
+
+
+
+Features Implemented
+
+1: Service-Based Architecture
+2: Form Request Validation
+3: Laravel API Resources & Collections
+4: JSON File Storage
+5: Proper HTTP Status Codes
+6: Exception Handling
+7: Clean RESTful APIs
+
+
+Commands Summary
+
+Purpose	                Command
+Generate App Key	    php artisan key:generate
+Run Application	        php artisan serve
+Clear Cache	            php artisan optimize:clear
+
+
+
+Storage Information
+
+Products are stored inside:
+storage/app/products/products.json
+No database is used as per assignment requirements.
+
+
+Author
+
+Suneel Kumar
+Full Stack Web Developer
+
+📧 suneelkumarsk036@gmail.com
+
+📞 +91-9793581152
+
+🌐 New Delhi, India
+
+License
+
+MIT License — Free for learning and interview purposes.
