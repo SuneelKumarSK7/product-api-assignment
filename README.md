@@ -41,6 +41,8 @@ API Base URL
 http://127.0.0.1:8000/api 
 
 API Endpoints
+Use the following APIs in Postman to test the application functionality and verify the responses.
+
 Feature	                Method	  Endpoint	            Description
 Create Product	        POST	  /api/products	        Create a new product
 Get All Products	    GET	      /api/products	        Retrieve all products
